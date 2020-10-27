@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Current Price</th>
+            <th>TOTAL</th>
+        </tr>
+        {% for s in shares %}
+            <tr>
+                <td>{{ s.symbol }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.shares }}</td>
+                <td>${{ '%0.2f'|format(s.current_price|float) }}</td>
+                <td>${{ '%0.2f'|format(s.total|float) }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>CASH</td>
+            <td colspan="3"></td>
+            <td>${{ '%0.2f'|format(user_cash|float) }}</td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+            <td><strong>${{ '%0.2f'|format(grand_total|float) }}</strong></td>
+        </tr>
+    </table>
+{% endblock %}
